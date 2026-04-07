@@ -11,7 +11,7 @@ public class FilterNode implements Node {
     private final InputPort inputPort;
     private final OutputPort outputPort;
 
-    public FilterNode(String id, String key, double threshold, InputPort inputPort, OutputPort outputPort){
+    public FilterNode(String id, String key, double threshold){
         this.id = id;
         this.key = key;
         this.threshold = threshold;
@@ -31,7 +31,7 @@ public class FilterNode implements Node {
 
             if(numValue >= threshold){
                 outputPort.send(message);
-                return "Pass"+value;
+                return "Pass "+value;
             }
         }
         return "Filter out";
