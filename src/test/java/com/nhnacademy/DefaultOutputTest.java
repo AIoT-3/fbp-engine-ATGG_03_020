@@ -37,5 +37,15 @@ public class DefaultOutputTest {
 
         outputPort.send(message);
         //Connection 미연결시
+        GeneratorNode generatorNode2 = new GeneratorNode("gen");
+        DefaultOutputPort outputPort1 = new DefaultOutputPort(generatorNode);
+        PrintNode printNode2 = new PrintNode("print");
+        connection.setTarget(printNode.getInputPort());
+        outputPort.connect(connection);
+
+        Message message2 = new Message("msg");
+        message.withEntry("key", 10);
+
+        outputPort.send(message);
     }
 }
