@@ -2,16 +2,18 @@ package core;
 
 import message.Message;
 
-public class DefaultInputPort implements InputPort{
+public class DefaultInputPort implements InputPort {
     private Node owner;
+    private String name;
 
-    public DefaultInputPort(Node owner){
+    public DefaultInputPort(String name, Node owner) {
         this.owner = owner;
+        this.name = name;
     }
 
     @Override
-    public void getName() {
-
+    public String getName() {
+        return "input";
     }
 
     @Override

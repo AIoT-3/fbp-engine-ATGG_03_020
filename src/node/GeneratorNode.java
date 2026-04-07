@@ -17,12 +17,19 @@ public class GeneratorNode implements Node {
     }
 
     @Override
+    public String getId() {
+        return id;
+    }
+
+    @Override
     public String process(Message message) {
         return "";
     }
 
     public void generate(String key, Object value){
         Message message = new Message(key);
+        message.withEntry(key,value);
+        this.outputPort.send(message);
         
     }
 }

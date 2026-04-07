@@ -3,6 +3,6 @@ package core;
 import message.Message;
 
 public interface InputPort {
-    void getName();
+    String getName();
     void receive(Message message);
 }
