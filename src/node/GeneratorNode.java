@@ -22,6 +22,7 @@ public class GeneratorNode implements Node {
     }
 
     public void generate(String key, Object value){
-        Message message = new Message();
+        Message message = new Message(key);
+        
     }
 }

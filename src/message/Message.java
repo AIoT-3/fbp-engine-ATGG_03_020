@@ -11,9 +11,9 @@ import java.util.Map;
 @Getter
 @ToString
 public class Message {
-    private String id;
-    private LocalDateTime timestamp;
-    private Map<String, Object> payload;
+    private final String id;
+    private final LocalDateTime timestamp;
+    private final Map<String, Object> payload;
 
     public Message(String id){
         this.id = id;
@@ -21,6 +21,7 @@ public class Message {
         this.payload = new HashMap<>();
     }
 
+    //타입안정성
     public <T> T get(String key) {
         return (T) payload.get(key);
     }

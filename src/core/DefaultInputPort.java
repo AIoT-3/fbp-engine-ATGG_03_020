@@ -8,6 +8,12 @@ public class DefaultInputPort implements InputPort{
     public DefaultInputPort(Node owner){
         this.owner = owner;
     }
+
+    @Override
+    public void getName() {
+
+    }
+
     @Override
     public void receive(Message message) {
         owner.process(message);

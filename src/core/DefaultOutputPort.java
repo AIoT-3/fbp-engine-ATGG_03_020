@@ -14,12 +14,20 @@ public class DefaultOutputPort implements OutputPort{
         this.owner = owner;
     }
 
-    public void connection(Connection connection){
+    @Override
+    public void connect(Connection connection){
         connectionList.add(connection);
     }
 
-    public void send(Message message){
+    @Override
+    public void getName() {
+
+    }
+
+    @Override
+    public void send(Message message) {
         connection.deliver(message);
+
     }
 }
 
