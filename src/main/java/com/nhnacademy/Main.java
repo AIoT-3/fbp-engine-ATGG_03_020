@@ -1,8 +1,7 @@
 package com.nhnacademy;
 
 import core.Connection;
-import core.Node;
-import message.Message;
+
 
 import node.FilterNode;
 import node.GeneratorNode;
