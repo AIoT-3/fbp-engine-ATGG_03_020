@@ -5,17 +5,23 @@ import message.Message;
 
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 
 @Setter
 public class Connection {
     private String id;
-    private Queue<Message> buffer = new LinkedList<>();
+    private BlockingQueue<Message> buffer = new LinkedBlockingQueue<>();
     private InputPort target;
 
     public void deliver(Message message) {
-        this.buffer.offer(message);
-        if (target != null) {
-            target.receive(this.buffer.poll());
+        try {
+            this.buffer.put(message);
+            if (target != null) {
+                target.receive(buffer.take());
+            }
+        }catch (InterruptedException e){
+            throw new RuntimeException(e);
         }
     }
 
