@@ -37,7 +37,6 @@ public class Connection {
             }
         });
 
-
         Thread consumer = new Thread(() ->{
 
             PrintNode printNode = new PrintNode("print");
