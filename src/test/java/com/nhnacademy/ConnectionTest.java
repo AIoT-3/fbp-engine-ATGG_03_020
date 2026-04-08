@@ -10,14 +10,14 @@ import node.PrintNode;
 public class ConnectionTest {
     public static void main(String[] args){
 
-        System.out.println("--deliver 후 target 수신--");
+        //deliver 후 target 수신
         Connection connection = new Connection();
         PrintNode printNode = new PrintNode("printer");
         connection.setTarget(printNode.getInputPort());
         Message message = new Message("msg");
         connection.deliver(message);
 
-        System.out.println("--target 미설정시동작--");
+        //target 미설정시동작
         Connection connection1 = new Connection();
         Message message1 = new Message("msg1");
         try{
@@ -27,14 +27,14 @@ public class ConnectionTest {
             System.out.println("예외발생");
         }
 
-        System.out.println("--버퍼크기확인--");
+        //버퍼크기확인
         Connection connection2 = new Connection();
         Message message2 = new Message("msg2");
         System.out.println(connection2.getBufferSize());
         connection2.deliver(new Message("msg2"));
         System.out.println(connection2.getBufferSize());
 
-        System.out.println("--다수메세지 순서보장--");
+        //다수메세지 순서보장
         Connection connection3 = new Connection();
         PrintNode printNode1 = new PrintNode("printer1");
         connection3.setTarget(printNode1.getInputPort());
