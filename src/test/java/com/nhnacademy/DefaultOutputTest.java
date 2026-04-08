@@ -36,16 +36,18 @@ public class DefaultOutputTest {
         message1.withEntry("key",10);
 
         outputPort.send(message);
+
         //Connection 미연결시
         GeneratorNode generatorNode2 = new GeneratorNode("gen");
         DefaultOutputPort outputPort1 = new DefaultOutputPort(generatorNode);
         PrintNode printNode2 = new PrintNode("print");
-        connection.setTarget(printNode.getInputPort());
-        outputPort.connect(connection);
+        Message message2 = new Message("msg2");
+        try{
+            outputPort.send(message);
+            System.out.println("예외없음");
+        } catch (Exception e){
+            System.out.println("예외발생");
+        }
 
-        Message message2 = new Message("msg");
-        message.withEntry("key", 10);
-
-        outputPort.send(message);
     }
 }
