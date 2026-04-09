@@ -9,8 +9,8 @@ import message.Message;
 
 @Getter
 public class PrintNode implements Node {
-    private String id;
-    private InputPort inputPort;
+    private final String id;
+    private final InputPort inputPort;
     private volatile boolean running = true;
 
     public PrintNode(String id) {
@@ -18,23 +18,6 @@ public class PrintNode implements Node {
         this.inputPort = new DefaultInputPort("in", this);
     }
 
-    public void printThread(Connection inCon) {
-        Thread thread = new Thread(() -> {
-            try {
-                while (running) {
-                    Message message = inCon.poll();
-                    if (message != null) {
-                        process(message);
-                    } else {
-                        Thread.sleep(10);
-                    }
-                }
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-        });
-        thread.start();
-    }
 
     @Override
     public String getId() {

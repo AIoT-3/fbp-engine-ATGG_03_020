@@ -22,8 +22,7 @@ public class DefaultOutputPort implements OutputPort {
     public void connect(Connection connection) {
         connectionList.add(connection);
     }
-
-
+    
     @Override
     public void send(Message message) {
         for(Connection connection : connectionList){

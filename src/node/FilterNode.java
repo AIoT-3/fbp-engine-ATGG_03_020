@@ -24,26 +24,6 @@ public class FilterNode implements Node {
         this.outputPort = new DefaultOutputPort(this);
     }
 
-    public void filterThread(Connection inCon, Connection outCon){
-        Thread thread = new Thread(()->{
-            try{
-                while(running){
-                    Message message = inCon.poll();
-                    if(message != null){
-                        String result = process(message);
-                        if(result.startsWith("pass")){
-                            outCon.deliver(message);
-                        }
-                    } else {
-                        Thread.sleep(10);
-                    }
-                }
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-        });
-        thread.start();
-    }
 
     @Override
     public String process(Message message) {
@@ -57,7 +37,7 @@ public class FilterNode implements Node {
 
             if (numValue >= threshold) {
                 outputPort.send(message);
-                return "Pass " + value;
+                return "Pass" + value;
             }
         }
         return "Filter out";
