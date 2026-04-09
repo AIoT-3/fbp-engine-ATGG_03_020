@@ -1,5 +1,6 @@
 package core;
 
+import lombok.Getter;
 import lombok.Setter;
 import message.Message;
 
@@ -7,6 +8,7 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
 @Setter
+@Getter
 public class Connection {
     private String id;
     private BlockingQueue<Message> buffer = new LinkedBlockingQueue<>(100);
@@ -19,6 +21,7 @@ public class Connection {
             throw new IllegalStateException();
         }
     }
+
 
     public void deliver(Message message) {
         try {

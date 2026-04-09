@@ -22,7 +22,9 @@ public class FilterNode implements Node {
         this.threshold = threshold;
         this.inputPort = new DefaultInputPort("in", this);
         this.outputPort = new DefaultOutputPort(this);
+        this.running = true;
     }
+
 
     @Override
     public String process(Message message) {
