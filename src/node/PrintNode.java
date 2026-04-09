@@ -18,7 +18,9 @@ public class PrintNode implements Node {
         this.inputPort = new DefaultInputPort("in", this);
     }
 
-
+    public boolean stop(){
+        return running = false;
+    }
     @Override
     public String getId() {
         return id;

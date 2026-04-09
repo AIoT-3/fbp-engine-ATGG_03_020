@@ -13,7 +13,11 @@ public class Connection {
     private InputPort target;
 
     public Message poll(){
-        return this.buffer.poll();
+        try {
+            return this.buffer.take();
+        } catch (InterruptedException e){
+            throw new IllegalStateException();
+        }
     }
 
     public void deliver(Message message) {

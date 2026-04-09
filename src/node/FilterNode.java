@@ -24,7 +24,6 @@ public class FilterNode implements Node {
         this.outputPort = new DefaultOutputPort(this);
     }
 
-
     @Override
     public String process(Message message) {
         if (message == null || !message.hasKey(key)) {
