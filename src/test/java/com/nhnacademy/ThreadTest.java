@@ -1,26 +1,20 @@
 package com.nhnacademy;
 
-import core.ThreadA;
+import core.Connection;
+import message.Message;
+import node.GeneratorNode;
 
 public class ThreadTest {
     public static void main(String[] args) {
-        ThreadA connection = new ThreadA();
+        GeneratorNode generator = new GeneratorNode("gen-1"); // 사용자님 코드 활용
+        Connection connection = new Connection();
 
-        System.out.println("--- [멀티스레드 테스트 시작] ---");
 
-        // 1. 별도의 스레드들이 시작됩니다.
-        connection.deliver();
+        generator.getOutputPort().connect(connection);
 
-        // 2. 메인 스레드는 작업이 완료될 때까지 충분히 대기합니다.
-        // 생산자가 100ms 간격으로 100개를 보내므로 최소 10초 이상 필요합니다.
-        try {
-            System.out.println("시스템: 생산자와 소비자가 작동 중입니다. 잠시만 기다려 주세요...");
-            java.lang.Thread.sleep(10000);
-        } catch (InterruptedException e) {
-            System.out.println("테스트 중단: " + e.getMessage());
-            java.lang.Thread.currentThread().interrupt();
-        }
+        connection.consumer(); // 소비자 스레드 시작 (while 루프 대기)
+        generator.producer();          // 생산자 스레드 시작 (1초 간격 메시지 생성)
 
-        System.out.println("--- [테스트 종료] ---");
+        try { Thread.sleep(6000); } catch (InterruptedException e) {}
     }
 }

@@ -6,6 +6,7 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
 public class ThreadA {
+    private final LinkedList<String> bufer = new LinkedList<>();
     private final BlockingQueue<String> buffer = new LinkedBlockingQueue<>();
 
     public void deliver() {

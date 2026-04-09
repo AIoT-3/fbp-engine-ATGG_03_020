@@ -13,7 +13,7 @@ public class ConnectionTest {
         //deliver 후 target 수신
         Connection connection = new Connection();
         PrintNode printNode = new PrintNode("printer");
-        connection.setTarget(printNode.getInputPort());
+
         Message message = new Message("msg");
         connection.deliver(message);
 
@@ -30,14 +30,12 @@ public class ConnectionTest {
         //버퍼크기확인
         Connection connection2 = new Connection();
         Message message2 = new Message("msg2");
-        System.out.println(connection2.getBufferSize());
         connection2.deliver(new Message("msg2"));
-        System.out.println(connection2.getBufferSize());
 
         //다수메세지 순서보장
         Connection connection3 = new Connection();
         PrintNode printNode1 = new PrintNode("printer1");
-        connection3.setTarget(printNode1.getInputPort());
+
 
         connection3.deliver(new Message("1"));
         connection3.deliver(new Message("2"));

@@ -1,5 +1,6 @@
 package node;
 
+import core.Connection;
 import core.DefaultInputPort;
 import core.InputPort;
 import core.Node;
@@ -10,10 +11,29 @@ import message.Message;
 public class PrintNode implements Node {
     private String id;
     private InputPort inputPort;
+    private volatile boolean running = true;
 
     public PrintNode(String id) {
         this.id = id;
-        this.inputPort = new DefaultInputPort("in",this);
+        this.inputPort = new DefaultInputPort("in", this);
+    }
+
+    public void printThread(Connection inCon) {
+        Thread thread = new Thread(() -> {
+            try {
+                while (running) {
+                    Message message = inCon.poll();
+                    if (message != null) {
+                        process(message);
+                    } else {
+                        Thread.sleep(10);
+                    }
+                }
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        });
+        thread.start();
     }
 
     @Override
