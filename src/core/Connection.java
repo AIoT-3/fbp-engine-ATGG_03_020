@@ -11,9 +11,15 @@ import java.util.concurrent.LinkedBlockingQueue;
 @Getter
 public class Connection {
     private String id;
-    private BlockingQueue<Message> buffer = new LinkedBlockingQueue<>(100);
+    private BlockingQueue<Message> buffer;
     private InputPort target;
 
+    public Connection(){
+        this(100);
+    }
+    public Connection(int capacity) {
+        this.buffer = new LinkedBlockingQueue<>(capacity);
+    }
     public Message poll(){
         try {
             return this.buffer.take();
