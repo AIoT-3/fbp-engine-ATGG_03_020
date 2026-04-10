@@ -1,6 +1,5 @@
 package node;
 
-import core.Connection;
 import core.DefaultInputPort;
 import core.InputPort;
 import core.Node;
@@ -21,15 +20,25 @@ public class PrintNode implements Node {
 
 
 
+
     @Override
     public String getId() {
         return id;
     }
 
     @Override
-    public String process(Message message) {
+    public void process(Message message) {
         String result = "[ID - " + id + "] " + message;
         System.out.println(result);
-        return result;
+    }
+
+    @Override
+    public void initialize() {
+
+    }
+
+    @Override
+    public void shutdown() {
+
     }
 }

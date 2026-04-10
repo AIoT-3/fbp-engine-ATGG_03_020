@@ -1,5 +1,6 @@
 package core;
 
+import lombok.Getter;
 import message.Message;
 
 import java.util.ArrayList;
@@ -8,14 +9,12 @@ import java.util.List;
 public class DefaultOutputPort implements OutputPort {
     List<Connection> connectionList = new ArrayList<>();
     private Node owner;
+    @Getter
+    private String name;
 
-    public DefaultOutputPort(Node owner) {
+    public DefaultOutputPort(String name, Node owner) {
         this.owner = owner;
-    }
-
-    @Override
-    public String getName() {
-        return "output";
+        this.name = name;
     }
 
     @Override

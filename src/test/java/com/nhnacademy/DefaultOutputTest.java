@@ -11,7 +11,7 @@ public class DefaultOutputTest {
     public static void main(String[] args){
         //단일 Connection전달
         GeneratorNode generatorNode = new GeneratorNode("gen");
-        DefaultOutputPort outputPort = new DefaultOutputPort(generatorNode);
+        DefaultOutputPort outputPort = new DefaultOutputPort("out", generatorNode);
         Connection connection = new Connection();
         PrintNode printNode = new PrintNode("print");
         connection.setTarget(printNode.getInputPort());
@@ -39,7 +39,7 @@ public class DefaultOutputTest {
 
         //Connection 미연결시
         GeneratorNode generatorNode2 = new GeneratorNode("gen");
-        DefaultOutputPort outputPort1 = new DefaultOutputPort(generatorNode);
+        DefaultOutputPort outputPort1 = new DefaultOutputPort("out", generatorNode);
         PrintNode printNode2 = new PrintNode("print");
         Message message2 = new Message("msg2");
         try{

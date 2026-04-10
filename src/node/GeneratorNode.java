@@ -13,18 +13,7 @@ public class GeneratorNode implements Node {
 
     public GeneratorNode(String id) {
         this.id = id;
-        this.outputPort = new DefaultOutputPort(this);
-    }
-
-
-    @Override
-    public String getId() {
-        return id;
-    }
-
-    @Override
-    public String process(Message message) {
-        return "";
+        this.outputPort = new DefaultOutputPort("out", this);
     }
 
     public void generate(String key, Object value) {
@@ -32,4 +21,25 @@ public class GeneratorNode implements Node {
         message.withEntry(key, value);
         this.outputPort.send(message);
     }
+
+    @Override
+    public String getId() {
+        return id;
+    }
+
+    @Override
+    public void process(Message message) {
+    }
+
+    @Override
+    public void initialize() {
+
+    }
+
+    @Override
+    public void shutdown() {
+
+    }
+
+
 }

@@ -21,32 +21,8 @@ public class FilterNode implements Node {
         this.key = key;
         this.threshold = threshold;
         this.inputPort = new DefaultInputPort("in", this);
-        this.outputPort = new DefaultOutputPort(this);
+        this.outputPort = new DefaultOutputPort("out",this);
         this.running = true;
-    }
-
-
-    @Override
-    public String process(Message message) {
-        if (message == null || !message.hasKey(key)) {
-            return "null";
-        }
-        Object value = message.get(key);
-
-        if (value instanceof Number) {
-            double numValue = ((Number) value).doubleValue();
-
-            if (numValue >= threshold) {
-                outputPort.send(message);
-                return "Pass" + value;
-            }
-        }
-        return "Filter out";
-    }
-
-    @Override
-    public String getId() {
-        return id;
     }
 
     public InputPort getinputPort() {
@@ -56,4 +32,38 @@ public class FilterNode implements Node {
     public OutputPort getoutputPort() {
         return outputPort;
     }
+
+
+    @Override
+    public void process(Message message) {
+        if (message == null || !message.hasKey(key)) {
+            return;
+        }
+        Object value = message.get(key);
+
+        if (value instanceof Number) {
+            double numValue = ((Number) value).doubleValue();
+
+            if (numValue >= threshold) {
+                outputPort.send(message);
+            }
+        }
+    }
+
+    @Override
+    public String getId() {
+        return id;
+    }
+
+    @Override
+    public void initialize() {
+
+    }
+
+    @Override
+    public void shutdown() {
+
+    }
+
+
 }

@@ -105,8 +105,6 @@ public class ConnectionQueueTest {
         Message msg = connection4.poll();
         System.out.println(connection4.getBufferSize());
 
-
     }
-
 
 }
