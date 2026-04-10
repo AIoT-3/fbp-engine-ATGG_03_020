@@ -12,7 +12,7 @@ public class GenerateNodeTest {
         Connection connection = new Connection();
 
         generatorNode.getOutputPort().connect(connection);
-        connection.setTarget(printNode.getInputPort());
+        connection.setTarget(printNode.getInputPort("in"));
 
         //메시지내용확인
         generatorNode.generate("key", 10);
@@ -33,7 +33,7 @@ public class GenerateNodeTest {
         generatorNode2.getOutputPort().connect(connection);
         generatorNode3.getOutputPort().connect(connection);
 
-        connection.setTarget(printNode.getInputPort());
+        connection.setTarget(printNode.getInputPort("in"));
 
         generatorNode1.generate("key", 10);
         generatorNode2.generate("key", 20);

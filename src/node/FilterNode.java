@@ -7,8 +7,7 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
 
-public class FilterNode implements Node {
-    private final String id;
+public class FilterNode extends AbstractNode {
     private final String key;
     private final double threshold;
     private final InputPort inputPort;
@@ -17,11 +16,13 @@ public class FilterNode implements Node {
     private volatile boolean running = true;
 
     public FilterNode(String id, String key, double threshold) {
-        this.id = id;
+        super(id);
         this.key = key;
         this.threshold = threshold;
         this.inputPort = new DefaultInputPort("in", this);
         this.outputPort = new DefaultOutputPort("out",this);
+        addInputPort("in");
+        addOutPort("out");
         this.running = true;
     }
 
@@ -35,29 +36,20 @@ public class FilterNode implements Node {
 
 
     @Override
-    public void process(Message message) {
-        if (message == null || !message.hasKey(key)) {
-            return;
-        }
+    protected void onProcess(Message message) {
         Object value = message.get(key);
 
         if (value instanceof Number) {
             double numValue = ((Number) value).doubleValue();
-
             if (numValue >= threshold) {
-                outputPort.send(message);
+                send("out",message);
             }
         }
     }
 
     @Override
-    public String getId() {
-        return id;
-    }
-
-    @Override
     public void initialize() {
-
+        super.initialize();
     }
 
     @Override

@@ -41,4 +41,13 @@ public class Connection {
     public int getBufferSize() {
         return buffer.size();
     }
+
+    public void bk() {
+
+
+
+
+
+
+    }
 }

@@ -7,34 +7,23 @@ import lombok.Getter;
 import message.Message;
 
 @Getter
-public class PrintNode implements Node {
-    private final String id;
-    private final InputPort inputPort;
+public class PrintNode extends AbstractNode {
     private volatile boolean running = true;
 
     public PrintNode(String id) {
-        this.id = id;
-        this.inputPort = new DefaultInputPort("in", this);
+        super(id);
         this.running = true;
     }
 
-
-
-
     @Override
-    public String getId() {
-        return id;
-    }
-
-    @Override
-    public void process(Message message) {
+    protected void onProcess(Message message) {
         String result = "[ID - " + id + "] " + message;
         System.out.println(result);
     }
 
     @Override
     public void initialize() {
-
+        super.initialize();
     }
 
     @Override

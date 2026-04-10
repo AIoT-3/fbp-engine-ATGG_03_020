@@ -14,9 +14,9 @@ public class PrintNodeTest {
         Connection connection = new Connection();
 
         generatorNode.getOutputPort().connect(connection);
-        connection.setTarget(printNode.getInputPort());
+        connection.setTarget(printNode.getInputPort("in"));
 
-        if(printNode.getInputPort() != null){
+        if(printNode.getInputPort("in") != null){
             System.out.println("성공");
         } else{
             System.out.println("실패");

@@ -15,12 +15,12 @@ public class FilterTest {
         // 1. 생성 -> 필터 연결
         Connection connection = new Connection();
         generatorNode.getOutputPort().connect(connection);
-        connection.setTarget(filterNode.getinputPort());
+        connection.setTarget(filterNode.getInputPort("in"));
 
         // 2. 필터 -> 출력 연결
         Connection connection1 = new Connection();
         filterNode.getoutputPort().connect(connection1);
-        connection1.setTarget(printNode.getInputPort());
+        connection1.setTarget(printNode.getInputPort("in"));
 
         // Thread-1: Generator
         Thread t1 = new Thread(() -> {

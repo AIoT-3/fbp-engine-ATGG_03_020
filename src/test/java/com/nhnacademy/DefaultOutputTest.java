@@ -14,7 +14,7 @@ public class DefaultOutputTest {
         DefaultOutputPort outputPort = new DefaultOutputPort("out", generatorNode);
         Connection connection = new Connection();
         PrintNode printNode = new PrintNode("print");
-        connection.setTarget(printNode.getInputPort());
+        connection.setTarget(printNode.getInputPort("in"));
         outputPort.connect(connection);
 
         Message message = new Message("msg");
@@ -28,8 +28,8 @@ public class DefaultOutputTest {
 
         PrintNode printNode1 = new PrintNode("print1");
 
-        connection1.setTarget(printNode1.getInputPort());
-        connection2.setTarget(printNode1.getInputPort());
+        connection1.setTarget(printNode1.getInputPort("in"));
+        connection2.setTarget(printNode1.getInputPort("in"));
 
         outputPort.connect(connection);
         Message message1 = new Message("msg1");

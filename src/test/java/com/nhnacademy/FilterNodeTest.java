@@ -19,7 +19,7 @@ public class FilterNodeTest {
         //필터->출력
         Connection connection1 = new Connection();
         filterNode.getoutputPort().connect(connection1);
-        connection1.setTarget(printNode.getInputPort());
+        connection1.setTarget(printNode.getInputPort("in"));
 
         generatorNode.generate("num",5);
         generatorNode.generate("num",10);
