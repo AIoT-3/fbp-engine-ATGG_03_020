@@ -13,6 +13,8 @@ public class PrintNode extends AbstractNode {
     public PrintNode(String id) {
         super(id);
         this.running = true;
+        addInputPort("in");
+        addInputPort("out");
     }
 
     @Override
@@ -28,6 +30,6 @@ public class PrintNode extends AbstractNode {
 
     @Override
     public void shutdown() {
-
+        super.shutdown();
     }
 }

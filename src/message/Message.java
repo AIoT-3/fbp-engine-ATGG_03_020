@@ -29,7 +29,10 @@ public class Message {
     public void withEntry(String key, Object value){
         this.payload.put(key,value);
     }
-
+    public Message set(String key, Object value){
+        this.payload.put(key, value);
+        return this;
+    }
     public boolean hasKey(String key){
         return payload.containsKey(key);
     }

@@ -19,9 +19,7 @@ public class TimerNode extends AbstractNode {
     }
 
     @Override
-    protected void onProcess(Message message) {
-
-    }
+    protected void onProcess(Message message) {}
 
     @Override
     public void initialize() {
