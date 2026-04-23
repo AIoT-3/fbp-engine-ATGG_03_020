@@ -17,10 +17,9 @@ public class FlowEngine {
         this.state = State.INITIALIZED;
     }
 
-    public Flow register(String id, Flow flow) {
-        flows.put(id, flow);
-        System.out.println("[Engine] 플로우 "+id+" 등록됨");
-        return flow;
+    public void register(Flow flow) {
+        flows.put(flow.toString(), flow);
+        System.out.println("[Engine] 플로우 "+flow+" 등록됨");
     }
 
     public void startFlow(String flowId) {
