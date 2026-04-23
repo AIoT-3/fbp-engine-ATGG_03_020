@@ -28,7 +28,6 @@ public class Connection {
         }
     }
 
-
     public void deliver(Message message) {
         try {
             buffer.put(message);
@@ -37,17 +36,20 @@ public class Connection {
         }
     }
 
-
     public int getBufferSize() {
         return buffer.size();
     }
 
-    public void bk() {
-
-
-
-
-
-
+    public void start() {
+        Thread worker = new Thread(() -> {
+            while (!Thread.currentThread().isInterrupted()) {
+                Message message = poll(); // blocking
+                if (target != null) {
+                    target.receive(message); // InputPort → Node.process()
+                }
+            }
+        });
+        worker.setDaemon(true);
+        worker.start();
     }
 }

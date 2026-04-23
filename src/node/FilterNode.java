@@ -25,7 +25,6 @@ public class FilterNode extends AbstractNode {
         addOutPort("out");
         this.running = true;
     }
-
     public InputPort getinputPort() {
         return inputPort;
     }
@@ -33,8 +32,6 @@ public class FilterNode extends AbstractNode {
     public OutputPort getoutputPort() {
         return outputPort;
     }
-
-
     @Override
     protected void onProcess(Message message) {
         Object value = message.get(key);

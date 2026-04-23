@@ -22,7 +22,7 @@ public class SplitNode extends AbstractNode {
         Double value = message.get(key);
         if(value>=threshold){
             send("match",message);
-        }else if(value<threshold){
+        }else {
             send("mismatch",message);
         }
     }

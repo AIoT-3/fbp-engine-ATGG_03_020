@@ -54,12 +54,8 @@ public abstract class AbstractNode implements Node {
 
 
     @Override
-    public void initialize() {
-
-    }
+    public void initialize() {}
 
     @Override
-    public void shutdown() {
-
-    }
+    public void shutdown() {}
 }

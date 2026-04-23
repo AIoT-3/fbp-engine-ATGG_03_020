@@ -14,7 +14,6 @@ public class PrintNode extends AbstractNode {
         super(id);
         this.running = true;
         addInputPort("in");
-        addInputPort("out");
     }
 
     @Override

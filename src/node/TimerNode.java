@@ -28,14 +28,12 @@ public class TimerNode extends AbstractNode {
         this.scheduler.scheduleAtFixedRate(()-> {
             try {
                 Message msg = new Message("msg");
-                msg.withEntry("tick", ticketCount);
+                msg.withEntry("tick", (double) ticketCount);
                 msg.withEntry("timestamp", System.currentTimeMillis());
-
                 send("out", msg);
                 ticketCount++;
-
             } catch (Exception e) {
-                throw new RuntimeException(e);
+                e.printStackTrace();
             }
         },0,interval,TimeUnit.MICROSECONDS);
     }
